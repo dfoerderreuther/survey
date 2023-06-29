@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "servers": [{
+        "url": "http://127.0.0.1:8000"
+    }],  
+    "paths": {
+        "/poll/{id}": {
+            "post": {
+                "summary": "Poll",
+                "operationId": "poll_poll__id__post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Values"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/results/{id}": {
+            "get": {
+                "summary": "Results",
+                "operationId": "results_results__id__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Values": {
+                "title": "Values",
+                "type": "object",
+                "properties": {
+                    "q1": {
+                        "title": "Q1",
+                        "type": "integer"
+                    },
+                    "q2": {
+                        "title": "Q2",
+                        "type": "integer"
+                    },
+                    "q3": {
+                        "title": "Q3",
+                        "type": "integer"
+                    },
+                    "q4": {
+                        "title": "Q4",
+                        "type": "integer"
+                    },
+                    "q5": {
+                        "title": "Q5",
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}
