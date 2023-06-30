@@ -1,24 +1,16 @@
 from fastapi import FastAPI, Path
-from pydantic import BaseModel
 
 from data import Data
+from values import Values
 
-app = FastAPI()
+app = FastAPI(servers=[{"url": "http://localhost:8000", "description": "dev"}])
 
 d = Data()
 
-
-class Values(BaseModel):
-    q1: int | None = None
-    q2: int | None = None
-    q3: int | None = None
-    q4: int | None = None
-    q5: int | None = None
-
-@app.post("/poll/{id}")
-async def poll(id: str, values: Values):
-    return d.poll(id, values.q1, values.q2, values.q3, values.q4, values.q5)
+@app.post("/poll")
+async def poll(values: Values):
+    return d.poll(values)
 
 @app.get("/results/{id}")
-async def results(id: str): 
+async def results(id: str) -> Values: 
     return d.results(id)

@@ -4,25 +4,17 @@
         "title": "FastAPI",
         "version": "0.1.0"
     },
-    "servers": [{
-        "url": "http://127.0.0.1:8000"
-    }],  
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "dev"
+        }
+    ],
     "paths": {
-        "/poll/{id}": {
+        "/poll": {
             "post": {
                 "summary": "Poll",
-                "operationId": "poll_poll__id__post",
-                "parameters": [
-                    {
-                        "required": true,
-                        "schema": {
-                            "title": "Id",
-                            "type": "string"
-                        },
-                        "name": "id",
-                        "in": "path"
-                    }
-                ],
+                "operationId": "poll_poll_post",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -41,17 +33,8 @@
                                 "schema": {}
                             }
                         }
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
                     }
+                    
                 }
             }
         },
@@ -75,16 +58,8 @@
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref": "#/components/schemas/Values"
                                 }
                             }
                         }
@@ -95,75 +70,36 @@
     },
     "components": {
         "schemas": {
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
-                "type": "object",
-                "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ValidationError"
-                        }
-                    }
-                }
-            },
-            "ValidationError": {
-                "title": "ValidationError",
+            "Values": {
+                "title": "Values",
                 "required": [
-                    "loc",
-                    "msg",
-                    "type"
+                    "id"
                 ],
                 "type": "object",
                 "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "integer"
-                                }
-                            ]
-                        }
-                    },
-                    "msg": {
-                        "title": "Message",
+                    "id": {
+                        "title": "Id",
                         "type": "string"
                     },
-                    "type": {
-                        "title": "Error Type",
-                        "type": "string"
-                    }
-                }
-            },
-            "Values": {
-                "title": "Values",
-                "type": "object",
-                "properties": {
                     "q1": {
                         "title": "Q1",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "q2": {
                         "title": "Q2",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "q3": {
                         "title": "Q3",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "q4": {
                         "title": "Q4",
-                        "type": "integer"
+                        "type": "number"
                     },
                     "q5": {
                         "title": "Q5",
-                        "type": "integer"
+                        "type": "number"
                     }
                 }
             }
