@@ -11,15 +11,15 @@ pip install pandas
 
 ## run
 
-uvicorn main:app --reload 
+uvicorn main:app --reload  --host localhost --port 8000
 
 ## swagger
 
-http://127.0.0.1:8000/docs
+http://localhost:8000/docs
 
 ## Openapi
 
-http://127.0.0.1:8000/openapi.json
+http://localhost:8000/openapi.json
 
 This file is not working in AEM as a Forms Datasource. 402 responses and Validation schemas have to be removed. A fixed and static version is [here](openapi.json). 
 
