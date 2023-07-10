@@ -1,12 +1,12 @@
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"
     },
     "servers": [
         {
-            "url": "http://localhost:8000",
+            "url": "http://localhost:8000/",
             "description": "dev"
         }
     ],
@@ -34,7 +34,6 @@
                             }
                         }
                     }
-                    
                 }
             }
         },
@@ -44,13 +43,13 @@
                 "operationId": "results_results__id__get",
                 "parameters": [
                     {
+                        "name": "id",
+                        "in": "path",
                         "required": true,
                         "schema": {
-                            "title": "Id",
-                            "type": "string"
-                        },
-                        "name": "id",
-                        "in": "path"
+                            "type": "string",
+                            "title": "Id"
+                        }
                     }
                 ],
                 "responses": {
@@ -66,42 +65,281 @@
                     }
                 }
             }
+        },
+        "/clear": {
+            "post": {
+                "summary": "Clear",
+                "operationId": "clear_clear_post",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/config": {
+            "post": {
+                "summary": "Setconfig",
+                "operationId": "setConfig_config_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Config"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/config/{id}": {
+            "get": {
+                "summary": "Getconfig",
+                "operationId": "getConfig_config__id__get",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Config"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
-            "Values": {
-                "title": "Values",
+            "Config": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "q1": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q1",
+                        "default": ""
+                    },
+                    "q2": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q2",
+                        "default": ""
+                    },
+                    "q3": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q3",
+                        "default": ""
+                    },
+                    "q4": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q4",
+                        "default": ""
+                    },
+                    "q5": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q5",
+                        "default": ""
+                    },
+                    "q1active": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q1Active",
+                        "default": false
+                    },
+                    "q2active": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q2Active",
+                        "default": false
+                    },
+                    "q3active": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q3Active",
+                        "default": false
+                    },
+                    "q4active": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q4Active",
+                        "default": false
+                    },
+                    "q5active": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q5Active",
+                        "default": false
+                    }
+                },
+                "type": "object",
                 "required": [
                     "id"
                 ],
-                "type": "object",
+                "title": "Config"
+            },
+            "Values": {
                 "properties": {
                     "id": {
-                        "title": "Id",
-                        "type": "string"
+                        "type": "string",
+                        "title": "Id"
                     },
                     "q1": {
-                        "title": "Q1",
-                        "type": "number"
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q1"
                     },
                     "q2": {
-                        "title": "Q2",
-                        "type": "number"
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q2"
                     },
                     "q3": {
-                        "title": "Q3",
-                        "type": "number"
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q3"
                     },
                     "q4": {
-                        "title": "Q4",
-                        "type": "number"
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q4"
                     },
                     "q5": {
-                        "title": "Q5",
-                        "type": "number"
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Q5"
                     }
-                }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "title": "Values"
             }
         }
     }
