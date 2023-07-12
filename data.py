@@ -20,8 +20,9 @@ class Data:
     def results(self, id) -> Values:
         results = self.valuetbl.search(Query().id == id)
         df = json_normalize(results) 
-        means = df[['q1', 'q2', 'q3', 'q4', 'q5']].mean()
+        means = df[['q1', 'q2', 'q3', 'q4', 'q5']].mean().fillna(0)
         values = Values(id=id, q1 = means.q1, q2 = means.q2, q3 = means.q3, q4 = means.q4, q5 = means.q5)
+        print(values)
         return values 
 
     def clear(self): 
@@ -36,3 +37,7 @@ class Data:
         result = self.configtbl.search(Query().id == id) 
         print(result[0])
         return toConfig(result[0])
+
+    def getConfigIds(self): 
+        results = self.configtbl.all()
+        return list(map(lambda x: x['id'], results))

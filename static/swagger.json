@@ -1,0 +1,283 @@
+{
+  "basePath": "/",
+  "definitions": {
+    "Config": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "q1": {
+          "default": "",
+          "title": "Q1",
+          "type": "string"
+        },
+        "q1active": {
+          "default": false,
+          "title": "Q1Active",
+          "type": "boolean"
+        },
+        "q2": {
+          "default": "",
+          "title": "Q2",
+          "type": "string"
+        },
+        "q2active": {
+          "default": false,
+          "title": "Q2Active",
+          "type": "boolean"
+        },
+        "q3": {
+          "default": "",
+          "title": "Q3",
+          "type": "string"
+        },
+        "q3active": {
+          "default": false,
+          "title": "Q3Active",
+          "type": "boolean"
+        },
+        "q4": {
+          "default": "",
+          "title": "Q4",
+          "type": "string"
+        },
+        "q4active": {
+          "default": false,
+          "title": "Q4Active",
+          "type": "boolean"
+        },
+        "q5": {
+          "default": "",
+          "title": "Q5",
+          "type": "string"
+        },
+        "q5active": {
+          "default": false,
+          "title": "Q5Active",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Config",
+      "type": "object"
+    },
+    "HTTPValidationError": {},
+    "ValidationError": {},
+    "Values": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "q1": {
+          "title": "Q1",
+          "type": "number"
+        },
+        "q2": {
+          "title": "Q2",
+          "type": "number"
+        },
+        "q3": {
+          "title": "Q3",
+          "type": "number"
+        },
+        "q4": {
+          "title": "Q4",
+          "type": "number"
+        },
+        "q5": {
+          "title": "Q5",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Values",
+      "type": "object"
+    }
+  },
+  "host": "localhost:8000",
+  "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/clear": {
+      "post": {
+        "operationId": "clear_clear_post",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {}
+          }
+        },
+        "summary": "Clear"
+      }
+    },
+    "/config": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "setConfig_config_post",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Config"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {}
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "summary": "Setconfig"
+      }
+    },
+    "/config/{id}": {
+      "get": {
+        "operationId": "getConfig_config__id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "$ref": "#/definitions/Config"
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "summary": "Getconfig"
+      }
+    },
+    "/configIds": {
+      "get": {
+        "operationId": "getConfigIds_configIds_get",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Response Getconfigids Configids Get",
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Getconfigids"
+      }
+    },
+    "/poll": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "poll_poll_post",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Values"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {}
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "summary": "Poll"
+      }
+    },
+    "/results/{id}": {
+      "get": {
+        "operationId": "results_results__id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {
+              "$ref": "#/definitions/Values"
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "summary": "Results"
+      }
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "x-components": {}
+}

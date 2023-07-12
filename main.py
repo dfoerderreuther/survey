@@ -1,10 +1,13 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from data import Data
 from models import Values
 from models import Config
 
 app = FastAPI(servers=[{"url": "http://localhost:8000", "description": "dev"}])
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 d = Data()
 
@@ -27,3 +30,7 @@ async def setConfig(config: Config):
 @app.get("/config/{id}")
 async def getConfig(id: str) -> Config: 
     return d.getConfig(id)
+
+@app.get("/configIds")
+async def getConfigIds() -> list[str]   : 
+    return d.getConfigIds()
